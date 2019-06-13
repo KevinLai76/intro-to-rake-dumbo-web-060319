@@ -16,8 +16,12 @@ class Student
   end
   
   namespace :db do
-    desc "migrate changes to your database"
-    
+  desc 'migrate changes to your database'
+  task :migrate => :environment do
+    Student.create_table
+  end
+end
+
   def self.create_table
     sql =  <<-SQL 
       CREATE TABLE IF NOT EXISTS students (
