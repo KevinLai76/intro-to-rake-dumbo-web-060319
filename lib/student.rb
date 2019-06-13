@@ -15,13 +15,8 @@ class Student
     @grade = grade
   end
   
-  namespace :db do
-  desc 'migrate changes to your database'
-  task :migrate => :environment do
-    Student.create_table
-  end
-    def self.create_table
-      sql =  <<-SQL 
+  def self.create_table
+    sql =  <<-SQL 
         CREATE TABLE IF NOT EXISTS students (
           id INTEGER PRIMARY KEY, 
           name TEXT, 
@@ -30,7 +25,6 @@ class Student
       SQL
       DB[:conn].execute(sql) 
     end
-  end
   
   def self.drop_table
     sql = "DROP TABLE IF EXISTS students"
