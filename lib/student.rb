@@ -20,7 +20,6 @@ class Student
   task :migrate => :environment do
     Student.create_table
   end
-
     def self.create_table
       sql =  <<-SQL 
         CREATE TABLE IF NOT EXISTS students (
@@ -31,7 +30,8 @@ class Student
       SQL
       DB[:conn].execute(sql) 
     end
-end 
+  end
+  
   def self.drop_table
     sql = "DROP TABLE IF EXISTS students"
     DB[:conn].execute(sql) 
